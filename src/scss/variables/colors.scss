@@ -1,0 +1,313 @@
+// ==========================================================================
+// Color System
+// ==========================================================================
+
+// Primary Colors
+// Main colors that make up the majority of the design system
+$primary: (
+  25: #e7eeec,
+  50: #dbe6e2,
+  100: #cfddd9,
+  200: #9ebbb2,
+  300: #6e9a8c,
+  400: #3d7865,
+  500: #0d563f,
+  600: #0a4532,
+  700: #083426,
+  800: #052219,
+  900: #03110d,
+);
+
+// Danger Colors
+// Used across error states and destructive actions
+$danger: (
+  25: #f7eded,
+
+  50: #f3e4e4,
+
+  100: #eedbdb,
+
+  200: #deb7b7,
+
+  300: #cd9292,
+
+  400: #bd6e6e,
+
+  500: #ac4a4a,
+
+  600: #8a3b3b,
+
+  700: #672c2c,
+
+  800: #451e1e,
+
+  900: #220f0f,
+);
+
+// Warning Colors
+// Used for potentially destructive or "on-hold" actions
+$warning: (
+  25: #fcfbf3,
+
+  50: #fbf9ee,
+
+  100: #f9f7e8,
+
+  200: #f4efd1,
+
+  300: #eee7b9,
+
+  400: #e9dfa2,
+
+  500: #e3d78b,
+
+  600: #b6ac6f,
+
+  700: #888153,
+
+  800: #5b5638,
+
+  900: #2d2b1c,
+);
+
+// Info Colors
+// Used for important action items that need to stand out
+$info: (
+  25: #e8eef3,
+
+  50: #dde5ed,
+
+  100: #d1dce7,
+
+  200: #a3bace,
+
+  300: #7697b6,
+
+  400: #48759d,
+
+  500: #1a5285,
+  600: #15426a,
+
+  700: #103150,
+
+  800: #0a2135,
+
+  900: #05101b,
+);
+
+// Success Colors
+// Communicates positive actions, trends, or confirmations
+$success: (
+  25: #edf7f1,
+
+  50: #e4f3ea,
+
+  100: #dbeee3,
+
+  200: #b7dec8,
+
+  300: #92cdac,
+
+  400: #6ebd91,
+
+  600: #3b8a5e,
+
+  700: #2c6746,
+
+  800: #1e452f,
+
+  900: #0f2217,
+);
+
+// Visited Link Colors
+// Enhances navigation by distinguishing visited links
+$visited: (
+  25: #f3e8f2,
+
+  50: #edddec,
+
+  100: #e7d1e6,
+
+  200: #cea3cd,
+
+  300: #b676b3,
+
+  400: #9d489a,
+
+  500: #851a81,
+
+  600: #6a1567,
+
+  700: #50104d,
+
+  800: #350a34,
+
+  900: #1b051a,
+);
+
+// Neutral Colors
+// Used for backgrounds, text colors, and general UI elements
+$neutral: (
+  25: #eff0f0,
+
+  50: #e8e8e9,
+
+  100: #e0e0e1,
+
+  200: #c1c1c3,
+
+  300: #a2a3a6,
+
+  400: #838488,
+
+  500: #64656a,
+
+  600: #505155,
+
+  700: #3c3d40,
+
+  800: #28282a,
+
+  900: #141415,
+);
+
+// Secondary Colors
+// Secondary Gold
+$secondary-gold: (
+  25: #f6f4ed,
+  50: #f2efe4,
+  100: #eee9dc,
+  200: #ddd3b8,
+  300: #cbbe95,
+  400: #baa871,
+  500: #a9924e,
+  600: #87753e,
+  700: #65582f,
+  800: #443a1f,
+  900: #221d10,
+);
+
+// Secondary Green
+$secondary-green: (
+  25: #edf7f1,
+  50: #e4f2ea,
+  100: #dbeee3,
+  200: #b7ddc8,
+  300: #92cdac,
+  400: #6ebc91,
+  500: #4aab75,
+  600: #3b895e,
+  700: #2c6746,
+  800: #1e442f,
+  900: #0f2217,
+);
+
+// Secondary Cyan-Blue
+$secondary-cyan-blue: (
+  25: #f0f9f9,
+  50: #e8f5f5,
+  100: #e0f2f2,
+  200: #c1e5e5,
+  300: #a3d8d8,
+  400: #84cbcb,
+  500: #65bebe,
+  600: #3b895e,
+  700: #3d7272,
+  800: #284c4c,
+  900: #142626,
+);
+
+// Secondary Choco-brown
+$secondary-choco-brown: (
+  25: #f5f0eb,
+  50: #f0e9e1,
+  100: #eae1d7,
+  200: #d6c3b0,
+  300: #c1a688,
+  400: #ad8861,
+  500: #986a39,
+  600: #7a552e,
+  700: #5b4022,
+  800: #3d2a17,
+  900: #1e150b,
+);
+
+// Neutral Dark Gray Colors
+$neutral-dark: (
+  25: #e9e9e9,
+  50: #deddde,
+  100: #d3d2d2,
+  200: #a7a5a6,
+  300: #7a7979,
+  400: #4e4c4d,
+  500: #221f20,
+  600: #1b191a,
+  700: #141313,
+  800: #0e0c0d,
+  900: #070606,
+);
+
+// Black Opacity Colors
+$black-opacity: (
+  100: rgba(18, 18, 18, 1),
+  90: rgba(18, 18, 18, 0.9),
+  80: rgba(18, 18, 18, 0.8),
+  70: rgba(18, 18, 18, 0.7),
+  60: rgba(18, 18, 18, 0.6),
+  50: rgba(18, 18, 18, 0.5),
+  40: rgba(18, 18, 18, 0.4),
+  30: rgba(18, 18, 18, 0.3),
+  20: rgba(18, 18, 18, 0.2),
+  10: rgba(18, 18, 18, 0.1),
+  0: rgba(18, 18, 18, 0),
+);
+
+// White Opacity Colors
+$white-opacity: (
+  100: rgba(255, 255, 255, 1),
+  90: rgba(255, 255, 255, 0.9),
+  80: rgba(255, 255, 255, 0.8),
+  70: rgba(255, 255, 255, 0.7),
+  60: rgba(255, 255, 255, 0.6),
+  50: rgba(255, 255, 255, 0.5),
+  40: rgba(255, 255, 255, 0.4),
+  30: rgba(255, 255, 255, 0.3),
+  20: rgba(255, 255, 255, 0.2),
+  10: rgba(255, 255, 255, 0.1),
+  0: rgba(255, 255, 255, 0),
+);
+
+// CSS Custom Properties
+:root {
+  // Generate CSS variables for all color palettes
+  @each $palette,
+    $colors
+      in (
+        "primary": $primary,
+        "danger": $danger,
+        "warning": $warning,
+        "info": $info,
+        "success": $success,
+        "visited": $visited,
+        "neutral": $neutral,
+        "neutral-dark": $neutral-dark,
+        "secondary-gold": $secondary-gold,
+        "secondary-green": $secondary-green,
+        "secondary-cyan-blue": $secondary-cyan-blue,
+        "secondary-choco-brown": $secondary-choco-brown
+      )
+  {
+    @each $shade, $color in $colors {
+      --#{$palette}-#{$shade}: #{$color};
+    }
+  }
+
+  // Generate opacity variables
+  @each $opacity, $color in $black-opacity {
+    --black-opacity-#{$opacity}: #{$color};
+  }
+
+  @each $opacity, $color in $white-opacity {
+    --white-opacity-#{$opacity}: #{$color};
+  }
+}

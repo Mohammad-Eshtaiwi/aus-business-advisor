@@ -1,0 +1,336 @@
+// Typography Variables
+// English and Arabic Typography System
+
+// Display Headings
+$display-1-size: 60px;
+$display-2-size: 54px;
+
+// Headings
+$h1-size: 48px;
+$h2-size: 42px;
+$h3-size: 36px;
+$h4-size: 32px;
+$h5-size: 28px;
+$h6-size: 24px;
+
+// Body Text Sizes
+$text-xl: 20px;
+$text-large: 18px;
+$text-medium: 16px;
+$text-small: 14px;
+
+// Caption and Overline Sizes
+$caption-large: 12px;
+$caption-small: 10px;
+$overline-large: 12px;
+$overline-small: 10px;
+
+// Font Weights
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+// Display Mixins
+@mixin display-1-bold {
+  font-size: $display-1-size;
+  font-weight: $font-bold;
+}
+
+@mixin display-1-medium {
+  font-size: $display-1-size;
+  font-weight: $font-medium;
+}
+
+@mixin display-1-regular {
+  font-size: $display-1-size;
+  font-weight: $font-regular;
+}
+
+@mixin display-2-bold {
+  font-size: $display-2-size;
+  font-weight: $font-bold;
+}
+
+@mixin display-2-medium {
+  font-size: $display-2-size;
+  font-weight: $font-medium;
+}
+
+@mixin display-2-regular {
+  font-size: $display-2-size;
+  font-weight: $font-regular;
+}
+
+// Heading Mixins
+@mixin h1 {
+  font-size: $h1-size;
+  font-weight: $font-regular;
+}
+
+@mixin h2 {
+  font-size: $h2-size;
+  font-weight: $font-regular;
+}
+
+@mixin h3 {
+  font-size: $h3-size;
+  font-weight: $font-regular;
+}
+
+@mixin h4 {
+  font-size: $h4-size;
+  font-weight: $font-regular;
+}
+
+@mixin h5 {
+  font-size: $h5-size;
+  font-weight: $font-regular;
+}
+
+@mixin h6 {
+  font-size: $h6-size;
+  font-weight: $font-regular;
+}
+
+// Body Text Mixins - XL
+@mixin text-xl-regular {
+  font-size: $text-xl;
+  font-weight: $font-regular;
+}
+
+@mixin text-xl-medium {
+  font-size: $text-xl;
+  font-weight: $font-medium;
+}
+
+@mixin text-xl-bold {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+}
+
+@mixin text-xl-italic {
+  font-size: $text-xl;
+  font-weight: $font-regular;
+  font-style: italic;
+}
+
+@mixin text-xl-underline {
+  font-size: $text-xl;
+  font-weight: $font-regular;
+  text-decoration: underline;
+}
+
+@mixin text-xl-strikethrough {
+  font-size: $text-xl;
+  font-weight: $font-regular;
+  text-decoration: line-through;
+}
+
+// Body Text Mixins - Large
+@mixin text-large-regular {
+  font-size: $text-large;
+  font-weight: $font-regular;
+}
+
+@mixin text-large-medium {
+  font-size: $text-large;
+  font-weight: $font-medium;
+}
+
+@mixin text-large-bold {
+  font-size: $text-large;
+  font-weight: $font-bold;
+}
+
+@mixin text-large-italic {
+  font-size: $text-large;
+  font-weight: $font-regular;
+  font-style: italic;
+}
+
+@mixin text-large-underline {
+  font-size: $text-large;
+  font-weight: $font-regular;
+  text-decoration: underline;
+}
+
+@mixin text-large-strikethrough {
+  font-size: $text-large;
+  font-weight: $font-regular;
+  text-decoration: line-through;
+}
+
+// Body Text Mixins - Medium
+@mixin text-medium-regular {
+  font-size: $text-medium;
+  font-weight: $font-regular;
+}
+
+@mixin text-medium-medium {
+  font-size: $text-medium;
+  font-weight: $font-medium;
+}
+
+@mixin text-medium-bold {
+  font-size: $text-medium;
+  font-weight: $font-bold;
+}
+
+@mixin text-medium-italic {
+  font-size: $text-medium;
+  font-weight: $font-regular;
+  font-style: italic;
+}
+
+@mixin text-medium-underline {
+  font-size: $text-medium;
+  font-weight: $font-regular;
+  text-decoration: underline;
+}
+
+@mixin text-medium-strikethrough {
+  font-size: $text-medium;
+  font-weight: $font-regular;
+  text-decoration: line-through;
+}
+
+// Body Text Mixins - Small
+@mixin text-small-regular {
+  font-size: $text-small;
+  font-weight: $font-regular;
+}
+
+@mixin text-small-medium {
+  font-size: $text-small;
+  font-weight: $font-medium;
+}
+
+@mixin text-small-bold {
+  font-size: $text-small;
+  font-weight: $font-bold;
+}
+
+@mixin text-small-italic {
+  font-size: $text-small;
+  font-weight: $font-regular;
+  font-style: italic;
+}
+
+@mixin text-small-underline {
+  font-size: $text-small;
+  font-weight: $font-regular;
+  text-decoration: underline;
+}
+
+@mixin text-small-strikethrough {
+  font-size: $text-small;
+  font-weight: $font-regular;
+  text-decoration: line-through;
+}
+
+// Caption Mixins - Large
+@mixin caption-large-regular {
+  font-size: $caption-large;
+  font-weight: $font-regular;
+}
+
+@mixin caption-large-medium {
+  font-size: $caption-large;
+  font-weight: $font-medium;
+}
+
+@mixin caption-large-bold {
+  font-size: $caption-large;
+  font-weight: $font-bold;
+}
+
+// Caption Mixins - Small
+@mixin caption-small-regular {
+  font-size: $caption-small;
+  font-weight: $font-regular;
+}
+
+@mixin caption-small-medium {
+  font-size: $caption-small;
+  font-weight: $font-medium;
+}
+
+@mixin caption-small-bold {
+  font-size: $caption-small;
+  font-weight: $font-bold;
+}
+
+// Overline Mixins - Large
+@mixin overline-large-regular {
+  font-size: $overline-large;
+  font-weight: $font-regular;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@mixin overline-large-medium {
+  font-size: $overline-large;
+  font-weight: $font-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@mixin overline-large-bold {
+  font-size: $overline-large;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// Overline Mixins - Small
+@mixin overline-small-regular {
+  font-size: $overline-small;
+  font-weight: $font-regular;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@mixin overline-small-medium {
+  font-size: $overline-small;
+  font-weight: $font-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@mixin overline-small-bold {
+  font-size: $overline-small;
+  font-weight: $font-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+:root {
+  /* Display Sizes */
+  --display-1-size: 60px;
+  --display-2-size: 54px;
+
+  /* Heading Sizes */
+  --h1-size: 48px;
+  --h2-size: 42px;
+  --h3-size: 36px;
+  --h4-size: 32px;
+  --h5-size: 28px;
+  --h6-size: 24px;
+
+  /* Body Text Sizes */
+  --text-xl: 20px;
+  --text-large: 18px;
+  --text-medium: 16px;
+  --text-small: 14px;
+
+  /* Caption and Overline Sizes */
+  --caption-large: 12px;
+  --caption-small: 10px;
+  --overline-large: 12px;
+  --overline-small: 10px;
+
+  /* Font Weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+}

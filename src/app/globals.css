@@ -1,13 +1,8 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "@/scss/variables/colors.scss";
+@import "@/scss/variables/typography.scss";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --padding-default: 1.5rem;
 }
 
 html,
@@ -17,11 +12,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-ibm-plex-sans);
+  --sidebar-width: min(40%, 400px);
+  --sidebar-bg-color: var(--primary-500);
 }
 
 * {
@@ -36,7 +29,4 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
