@@ -40,3 +40,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 https://maps.abs.gov.au/
 https://geo.abs.gov.au/arcgis/rest/services/ASGS2021
+
+
+
+STE > ASGS2021/SA4 > ASGS2021/SA3 > ASGS2021/SA2
+
+
+---
+
+213051587 => the area
+C21_G61_SA2 => not sure of it's name but it's telling the api that I want population's data (as an example)
+
+
+https://data.api.abs.gov.au/rest/data/ABS%2CC21_G61_SA2%2C/...213051587..?format=jsondata&detail=full

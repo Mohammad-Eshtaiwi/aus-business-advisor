@@ -1,5 +1,5 @@
-@import "@/scss/variables/colors.scss";
-@import "@/scss/variables/typography.scss";
+@use "@/scss/main.scss";
+@import "https://js.arcgis.com/4.33/@arcgis/core/assets/esri/themes/light/main.css";
 
 :root {
   --padding-default: 1.5rem;

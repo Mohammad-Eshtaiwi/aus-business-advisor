@@ -310,4 +310,8 @@ $white-opacity: (
   @each $opacity, $color in $white-opacity {
     --white-opacity-#{$opacity}: #{$color};
   }
+
+  --color-primary: var(--primary-500);
+  --color-primary-light: var(--primary-300);
+  --color-primary-dark: var(--primary-700);
 }

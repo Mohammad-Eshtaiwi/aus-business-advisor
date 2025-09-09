@@ -7,10 +7,10 @@
   padding: var(--padding-default);
   background-color: var(--sidebar-bg-color);
   width: min(40%, 400px);
+  flex-shrink: 0;
 }
 
 .mapContainer {
-  padding: var(--padding-default);
   flex: 1;
   width: 100%;
 }
