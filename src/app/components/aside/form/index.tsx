@@ -1,21 +1,30 @@
 "use client";
 
-import React from "react";
-import Select from "@/components/Select";
+import React, { useReducer } from "react";
 import * as RadixForm from "@radix-ui/react-form";
 import { useRegions } from "@/app/context/RegionsContext";
-import { useForm, Controller } from "react-hook-form";
-import { SA2Region, SA3Region, SA4Region } from "@/app/types/regions";
-import { SA2_URL, SA3_URL, SA4_URL, STE_URL } from "@/app/constants/layers";
-import { useMap, addFeatureLayer } from "@/components/Map/Provider";
+import { useForm } from "react-hook-form";
+import { addFeatureLayer, useMap } from "@/components/Map/Provider";
 import handleLocationClick from "./utils/handleLocationClick";
+import ReactMarkdown from "react-markdown";
+import Modal from "@/components/modal";
+import * as ScrollArea from "@radix-ui/react-scroll-area";
+import FORM_INPUTS_CONFIG from "./constants/formInputsConfig.const";
+import FORM_DEFAULT_VALUES from "./constants/formDefaultValues.const";
+import { onSubmit, resetChildFields } from "./utils/commonFormFunctionalities";
+import RegionSelect, { RegionSelects } from "./components/RegionSelect";
+import {
+  suggestionsReducer,
+  initialState,
+} from "./reducers/suggestionsReducer";
+import { SA2Region, SA3Region, SA4Region } from "@/app/types/regions";
 
-export interface FormValues {
-  state: string;
-  sa4: string;
-  sa3: string;
-  sa2: string;
-}
+export type FormValues = {
+  state: string | null;
+  sa4: string | null;
+  sa3: string | null;
+  sa2: string | null;
+};
 
 interface SelectOption {
   value: string;
@@ -23,15 +32,9 @@ interface SelectOption {
 }
 
 function Form() {
-  const { watch, control, handleSubmit, setValue, getValues } =
-    useForm<FormValues>({
-      defaultValues: {
-        state: "",
-        sa4: "",
-        sa3: "",
-        sa2: "",
-      },
-    });
+  const { watch, control, handleSubmit, setValue } = useForm<FormValues>({
+    defaultValues: FORM_DEFAULT_VALUES,
+  });
   const { regions } = useRegions();
   const { map, view } = useMap();
 
@@ -39,45 +42,29 @@ function Form() {
   const sa4 = watch("sa4");
   const sa3 = watch("sa3");
 
-  const onSubmit = (data: FormValues) => {
-    // Handle form submission
-    console.log("Form submitted with data:", data);
-  };
-
-  const resetChildFields = (level: "state" | "sa4" | "sa3") => {
-    if (level === "state") {
-      setValue("sa4", "");
-      setValue("sa3", "");
-      setValue("sa2", "");
-    } else if (level === "sa4") {
-      setValue("sa3", "");
-      setValue("sa2", "");
-    } else if (level === "sa3") {
-      setValue("sa2", "");
-    }
-  };
+  const [suggestionsState, dispatch] = useReducer(
+    suggestionsReducer,
+    initialState
+  );
 
   const handleRegionChange = async (
     value: string,
-    level: "state" | "sa4" | "sa3" | "sa2",
+    level: keyof typeof FORM_INPUTS_CONFIG,
     {
       shouldAddLayer = true,
     }: {
       shouldAddLayer?: boolean;
     } = {}
   ) => {
-    const config = {
-      state: { url: STE_URL, codeField: "state_code_2021" },
-      sa4: { url: SA4_URL, codeField: "sa4_code_2021" },
-      sa3: { url: SA3_URL, codeField: "sa3_code_2021" },
-      sa2: { url: SA2_URL, codeField: "sa2_code_2021" },
-    }[level];
+    const config = FORM_INPUTS_CONFIG[level];
 
     if (map && view && shouldAddLayer) {
       await addFeatureLayer({ ...config, code: value }, map, view);
     }
     if (level !== "sa2") {
-      resetChildFields(level);
+      resetChildFields(level, setValue);
+      // Reset suggestions when changing higher-level regions
+      dispatch({ type: "RESET" });
     }
   };
 
@@ -89,8 +76,9 @@ function Form() {
         value: state.state_code_2021,
         label: state.state_name_2021,
       })),
+
       sa4:
-        regions.sa4?.[state]?.map((region: SA4Region) => ({
+        regions.sa4?.[state!]?.map((region: SA4Region) => ({
           value: region.sa4_code_2021,
           label: region.sa4_name_2021,
         })) || [],
@@ -109,34 +97,11 @@ function Form() {
     return options[level];
   };
 
-  const renderRegionSelect = (
-    name: keyof FormValues,
-    level: "state" | "sa4" | "sa3" | "sa2",
-    placeholder: string,
-    isRequired = false
-  ) => (
-    <Controller
-      name={name}
-      control={control}
-      rules={{ required: isRequired }}
-      render={({ field: { value, onChange, ...field } }) => (
-        <Select
-          {...field}
-          value={value || ""}
-          onChange={(newValue) => {
-            onChange(newValue);
-            handleRegionChange(newValue, level);
-          }}
-          options={getRegionOptions(level)}
-          disabled={level !== "state" && !getRegionOptions(level).length}
-          placeholder={placeholder}
-        />
-      )}
-    />
-  );
-
   return (
-    <RadixForm.Root className="FormRoot" onSubmit={handleSubmit(onSubmit)}>
+    <RadixForm.Root
+      className="FormRoot"
+      onSubmit={handleSubmit((data) => onSubmit(data, dispatch))}
+    >
       <button
         type="button"
         className="Button location-button"
@@ -146,14 +111,51 @@ function Form() {
         📍 Use My Location
       </button>
 
-      {renderRegionSelect("state", "state", "Select a State...", true)}
-      {renderRegionSelect("sa4", "sa4", "Select a SA4 Region...")}
-      {renderRegionSelect("sa3", "sa3", "Select a SA3 Region...")}
-      {renderRegionSelect("sa2", "sa2", "Select a SA2 Region...")}
+      {RegionSelects.map((regionSelect) => (
+        <RegionSelect
+          key={regionSelect.name}
+          name={regionSelect.name as keyof FormValues}
+          level={regionSelect.level as keyof typeof FORM_INPUTS_CONFIG}
+          placeholder={regionSelect.placeholder}
+          control={control}
+          getRegionOptions={getRegionOptions}
+          handleRegionChange={handleRegionChange}
+        />
+      ))}
 
-      <button type="submit" className="Button">
-        Get Statistics
-      </button>
+      <Modal
+        trigger={
+          <button
+            type="submit"
+            className="Button"
+            disabled={suggestionsState.isLoading}
+          >
+            {suggestionsState.isLoading ? "Loading..." : "Get Statistics"}
+          </button>
+        }
+        title="Business Suggestions"
+      >
+        <div>
+          <ScrollArea.Root className="ScrollAreaRoot">
+            <ScrollArea.Viewport className="ScrollAreaViewport">
+              {suggestionsState.error ? (
+                <div className="error-message">{suggestionsState.error}</div>
+              ) : (
+                <ReactMarkdown className="markdown">
+                  {suggestionsState.suggestions}
+                </ReactMarkdown>
+              )}
+            </ScrollArea.Viewport>
+            <ScrollArea.Scrollbar
+              className="ScrollAreaScrollbar"
+              orientation="vertical"
+            >
+              <ScrollArea.Thumb className="ScrollAreaThumb" />
+            </ScrollArea.Scrollbar>
+            <ScrollArea.Corner className="ScrollAreaCorner" />
+          </ScrollArea.Root>
+        </div>
+      </Modal>
     </RadixForm.Root>
   );
 }
