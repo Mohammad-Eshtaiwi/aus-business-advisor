@@ -46,7 +46,6 @@ export default async function handleLocationClick(
     const result = await newFeatureLayer.queryFeatures(query);
 
     if (result.features.length > 0) {
-      console.log("Feature:", result.features[0].attributes);
       const feature = result.features[0].attributes;
 
       // Define the hierarchy of regions to set
