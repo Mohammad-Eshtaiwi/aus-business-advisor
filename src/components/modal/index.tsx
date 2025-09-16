@@ -4,34 +4,29 @@ import { Cross2Icon } from "@radix-ui/react-icons";
 import styles from "./styles.module.scss";
 
 export interface DialogProps {
-  trigger: React.ReactNode;
   title: string;
   description?: string;
   children: React.ReactNode;
-  onOpenChange?: (open: boolean) => void;
   defaultOpen?: boolean;
   className?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 const Modal: React.FC<DialogProps> = ({
-  trigger,
   title,
   description,
   children,
-  onOpenChange,
   defaultOpen,
   className,
+  open,
+  onOpenChange,
 }) => (
-  <Dialog.Root defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
-    <Dialog.Trigger asChild>
-      {trigger}
-    </Dialog.Trigger>
+  <Dialog.Root defaultOpen={defaultOpen} open={open} onOpenChange={onOpenChange}>
     <Dialog.Portal>
       <Dialog.Overlay className={styles.overlay} />
-      <Dialog.Content className={`${styles.content} ${className || ''}`}>
-        <Dialog.Title className={styles.title}>
-          {title}
-        </Dialog.Title>
+      <Dialog.Content className={`${styles.content} ${className || ""}`}>
+        <Dialog.Title className={styles.title}>{title}</Dialog.Title>
         {description && (
           <Dialog.Description className={styles.description}>
             {description}

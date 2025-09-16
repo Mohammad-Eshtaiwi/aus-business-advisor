@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useReducer } from "react";
 import * as RadixForm from "@radix-ui/react-form";
 import { useRegions } from "@/app/context/RegionsContext";
@@ -32,9 +31,18 @@ interface SelectOption {
 }
 
 function Form() {
-  const { watch, control, handleSubmit, setValue } = useForm<FormValues>({
+  const {
+    watch,
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: FORM_DEFAULT_VALUES,
+    mode: "all",
   });
+  console.log(errors, "errors");
+
   const { regions } = useRegions();
   const { map, view } = useMap();
 
@@ -123,18 +131,16 @@ function Form() {
         />
       ))}
 
-      <Modal
-        trigger={
-          <button
-            type="submit"
-            className="Button"
-            disabled={suggestionsState.isLoading}
-          >
-            {suggestionsState.isLoading ? "Loading..." : "Get Statistics"}
-          </button>
+      <button
+        type="submit"
+        className="Button"
+        disabled={
+          suggestionsState.isLoading || Object.keys(errors).length > 0 || !state
         }
-        title="Business Suggestions"
       >
+        {suggestionsState.isLoading ? "Loading..." : "Get Statistics"}
+      </button>
+      <Modal title="Business Suggestions" open={suggestionsState.openModal} onOpenChange={() => dispatch({ type: "CLOSE_MODAL" })}>
         <div>
           <ScrollArea.Root className="ScrollAreaRoot">
             <ScrollArea.Viewport className="ScrollAreaViewport">
@@ -142,7 +148,9 @@ function Form() {
                 <div className="error-message">{suggestionsState.error}</div>
               ) : (
                 <ReactMarkdown className="markdown">
-                  {suggestionsState.suggestions}
+                  {suggestionsState.isLoading
+                    ? "getting the suggestions for you, it can take a while..."
+                    : suggestionsState.suggestions}
                 </ReactMarkdown>
               )}
             </ScrollArea.Viewport>

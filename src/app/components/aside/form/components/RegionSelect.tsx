@@ -22,7 +22,7 @@ const RegionSelect = ({
   name,
   level,
   placeholder,
-  isRequired = false,
+  isRequired = true,
   control,
   getRegionOptions,
   handleRegionChange,
@@ -31,18 +31,22 @@ const RegionSelect = ({
     name={name}
     control={control}
     rules={{ required: isRequired }}
-    render={({ field: { value, onChange, ...field } }) => (
-      <Select
-        {...field}
-        value={value || ""}
-        onChange={(newValue) => {
-          onChange(newValue);
-          handleRegionChange(newValue, level);
-        }}
-        options={getRegionOptions(level)}
-        disabled={level !== "state" && !getRegionOptions(level).length}
-        placeholder={placeholder}
-      />
+    render={({ field: { value, onChange, ...field }, fieldState: { error } }) => (
+      <div className="select-container">
+        <Select
+          {...field}
+          value={value || ""}
+          onChange={(newValue) => {
+            onChange(newValue);
+            handleRegionChange(newValue, level);
+          }}
+          options={getRegionOptions(level)}
+          disabled={level !== "state" && !getRegionOptions(level).length}
+          placeholder={placeholder}
+          error={!!error}
+        />
+        {error && <span className="error-message">{error.message}</span>}
+      </div>
     )}
   />
 );
@@ -54,20 +58,24 @@ export const RegionSelects = [
     name: "state",
     level: "state",
     placeholder: "Select a State...",
+    isRequired: true,
   },
   {
     name: "sa4",
     level: "sa4",
     placeholder: "Select a SA4 Region...",
+    isRequired: true,
   },
   {
     name: "sa3",
     level: "sa3",
     placeholder: "Select a SA3 Region...",
+    isRequired: true,
   },
   {
     name: "sa2",
     level: "sa2",
     placeholder: "Select a SA2 Region...",
+    isRequired: true,
   },
 ];

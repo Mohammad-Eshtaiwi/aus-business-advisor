@@ -27,6 +27,14 @@ export const onSubmit = async (
   data: FormValues,
   dispatch: Dispatch<SuggestionsAction>
 ) => {
+  // Check if all required fields are filled
+  if (!data.state || !data.sa4 || !data.sa3 || !data.sa2) {
+    dispatch({
+      type: "ERROR",
+      payload: "Please fill in all required fields before submitting.",
+    });
+    return;
+  }
   dispatch({ type: "SUBMIT" });
 
   try {

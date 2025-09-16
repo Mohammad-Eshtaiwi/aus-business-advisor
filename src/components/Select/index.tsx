@@ -22,6 +22,7 @@ interface SelectProps {
   ariaLabel?: string;
   className?: string;
   disabled?: boolean;
+  error?: boolean;
 }
 
 function SelectItem({
@@ -51,6 +52,7 @@ export default function Select({
   ariaLabel,
   className,
   disabled = false,
+  error = false,
 }: SelectProps) {
   return (
     <SelectPrimitive.Root
@@ -59,7 +61,7 @@ export default function Select({
       disabled={disabled}
     >
       <SelectPrimitive.Trigger
-        className={clsx(styles.Trigger, className)}
+        className={clsx(styles.Trigger, className, { [styles.error]: error })}
         aria-label={ariaLabel}
       >
         <SelectPrimitive.Value placeholder={placeholder} />
