@@ -1,8 +1,8 @@
-# Australian Chart Builder Documentation
+# Australian Business Advisor Documentation
 
 ## Overview
 
-The Australian Chart Builder is a web application that provides interactive visualization and analysis of Australian Bureau of Statistics (ABS) data. The application allows users to explore demographic data across different geographical levels (State, SA4, SA3, SA2) and generates business suggestions based on population ancestry data.
+The Australian Business Advisor is a web application that provides interactive visualization and analysis of Australian Bureau of Statistics (ABS) data. The application allows users to explore demographic data across different geographical levels (State, SA4, SA3, SA2) and generates business suggestions based on population ancestry data.
 
 ## Architecture
 
