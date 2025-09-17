@@ -63,6 +63,8 @@ export const onSubmit = async (
     });
 
     if (!response.ok) {
+      alert("Google AI server is not responding due to high demand. Please try again later.");
+
       throw new Error(`API error: ${response.statusText}`);
     }
 
@@ -70,6 +72,7 @@ export const onSubmit = async (
     dispatch({ type: "SUCCESS", payload: suggestions });
   } catch (error) {
     console.error("Error:", error);
+
     dispatch({
       type: "ERROR",
       payload: "Failed to load business suggestions. Please try again.",

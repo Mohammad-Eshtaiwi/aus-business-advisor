@@ -139,7 +139,9 @@ function Form() {
           suggestionsState.isLoading || Object.keys(errors).length > 0 || !state
         }
       >
-        {suggestionsState.isLoading ? "Loading..." : "Get Business Suggestions"}
+        {suggestionsState.isLoading
+          ? "Making it for you, it can take a while..."
+          : "Get Business Suggestions"}
       </Button>
       <Modal
         title="Business Suggestions"

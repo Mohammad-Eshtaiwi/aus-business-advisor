@@ -26,6 +26,20 @@ export default async function handleLocationClick(
 
     const { latitude, longitude } = position.coords;
 
+    // Check if the coordinates are within Australia's bounding box
+    // Rough bounding box: lat -44 to -10, lon 112 to 154
+    if (
+      latitude < -44 || // South of Australia
+      latitude > -10 || // North of Australia
+      longitude < 112 || // West of Australia
+      longitude > 154 // East of Australia
+    ) {
+      alert(
+        "Your location is outside Australia. Please select a location within Australia."
+      );
+      return;
+    }
+
     const newFeatureLayer = new FeatureLayer({
       url: SA2_URL,
       outFields: ["*"],
