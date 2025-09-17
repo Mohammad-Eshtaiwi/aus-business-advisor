@@ -85,6 +85,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ suggestions });
   } catch (error) {
     console.error("Error generating business suggestions:", error);
+
     return NextResponse.json(
       { error: "Failed to generate business suggestions" },
       { status: 500 }

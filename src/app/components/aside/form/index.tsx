@@ -17,6 +17,7 @@ import {
   initialState,
 } from "./reducers/suggestionsReducer";
 import { SA2Region, SA3Region, SA4Region } from "@/app/types/regions";
+import { Button } from "@/components/Button";
 
 export type FormValues = {
   state: string | null;
@@ -110,14 +111,14 @@ function Form() {
       className="FormRoot"
       onSubmit={handleSubmit((data) => onSubmit(data, dispatch))}
     >
-      <button
+      <Button
         type="button"
         className="Button location-button"
         onClick={() => handleLocationClick(setValue, handleRegionChange)}
         style={{ marginBottom: "1rem" }}
       >
         📍 Use My Location
-      </button>
+      </Button>
 
       {RegionSelects.map((regionSelect) => (
         <RegionSelect
@@ -131,16 +132,20 @@ function Form() {
         />
       ))}
 
-      <button
+      <Button
         type="submit"
         className="Button"
         disabled={
           suggestionsState.isLoading || Object.keys(errors).length > 0 || !state
         }
       >
-        {suggestionsState.isLoading ? "Loading..." : "Get Statistics"}
-      </button>
-      <Modal title="Business Suggestions" open={suggestionsState.openModal} onOpenChange={() => dispatch({ type: "CLOSE_MODAL" })}>
+        {suggestionsState.isLoading ? "Loading..." : "Get Business Suggestions"}
+      </Button>
+      <Modal
+        title="Business Suggestions"
+        open={suggestionsState.openModal}
+        onOpenChange={() => dispatch({ type: "CLOSE_MODAL" })}
+      >
         <div>
           <ScrollArea.Root className="ScrollAreaRoot">
             <ScrollArea.Viewport className="ScrollAreaViewport">
