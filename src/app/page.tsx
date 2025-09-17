@@ -8,7 +8,7 @@ import Map from "@/components/Map";
 
 export default async function Home() {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/regions`
+    `${process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || ""}/api/regions`
   );
   const regions: RegionsData = await data.json();
 
