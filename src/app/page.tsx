@@ -8,7 +8,7 @@ import Map from "@/components/Map";
 
 export default async function Home() {
   const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/regions`
+    `${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/regions`
   );
   const regions: RegionsData = await data.json();
 
@@ -25,3 +25,4 @@ export default async function Home() {
     </RegionsProvider>
   );
 }
+export const dynamic = "force-dynamic";

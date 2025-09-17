@@ -175,6 +175,7 @@ aus-chart-builder/
 
 ```
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
+GEMINI_API_KEY=you-token
 ```
 
 ### Development Setup
