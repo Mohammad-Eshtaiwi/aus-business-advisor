@@ -7,9 +7,12 @@ import { MapProvider } from "@/components/Map/Provider";
 import Map from "@/components/Map";
 
 export default async function Home() {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_PROJECT_PRODUCTION_URL || ""}/api/regions`
-  );
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000");
+  const data = await fetch(`${baseUrl}/api/regions`);
   const regions: RegionsData = await data.json();
 
   return (
